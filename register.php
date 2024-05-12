@@ -134,7 +134,7 @@ if (isset($_POST['submit'])) {
             <div class="btn1">
                 <button type="submit" name="submit">Submit</button>
                 <button type="button" onclick="cancelit()">Cancel</button>
-                <div class="signup" name="signup" onclick="toggleL();cancelit();">Already a member?<a href="#" onclick="toggleL()"> Login now</a></div>
+                <div class="login" id="login" onclick="toggleL();">Already a member?<a href="#" onclick="toggleL(); cancelit();"> Login now</a></div>
             </>
 
         </form>

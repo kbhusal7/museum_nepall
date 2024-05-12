@@ -164,7 +164,7 @@ if (isset($_POST['details'])) {
             $tbl_booking_sql = 'INSERT INTO `tbl_ticketbooking` (`id`, `u_name`, `m_name`, `b_date`, `no_of_nc`, `no_of_ns`, `no_of_fc`, `no_of_sa`, `payment_type`, `transction_no`, `amount`) VALUES (NULL, "' . $_SESSION["name"] . '","' . $_SESSION["MN"] . '","' . $_SESSION["date"] . '","' . $_SESSION["NC"] . '", "' . $_SESSION["NS"] . '","' . $_SESSION["FC"] . '","' . $_SESSION["SA"] . '","' . $_SESSION["payment_type"] . '","' . $_SESSION["payment_no"] . '","' . $_SESSION["TP"] . '")';
             $tbl_booking_query = mysqli_query($con, $tbl_booking_sql);
             if ($tbl_booking_query) {
-                echo "inserted";
+                echo "<h3 align='center'> Book more tickets ? </h3>";
             } else {
                 echo "false";
             }
@@ -202,7 +202,7 @@ if (isset($_POST['details'])) {
                 <label for="ctz">Specially Abled:</label>
                 <span> <?php print_r($_SESSION["SA"]); ?></span><br>
                 <label for="ctz">Total Price:</label>
-                <span> <?php print_r($_SESSION["TP"]); ?></span><br>
+                <span> <?php print_r($_SESSION["TP"]) ; ?></span><br>
             </div>
             <label for="payment">Payment:</label>
             <div class="line2"></div>
@@ -268,13 +268,14 @@ if (isset($_POST['details'])) {
                         <span><?php print_r($_SESSION["TP"]); ?></span>
                     </div>
                     <div class="btn4">
-                        <button name="final" type="submit" onclick="notificationPlay()">Confirm Ticket!</button>
+                        <button name="final" type="button" onclick="notificationPlay()">Confirm Ticket!</button>
                         
                     </div>
                    
         </form>
     </div>
 </div>
+
 <style>
      /* Style for modal dialog */
      .modal {

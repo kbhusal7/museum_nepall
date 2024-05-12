@@ -1,6 +1,5 @@
 <?php
 session_start();
-// require 'session_check.php';
 require_once 'include/db.php';
 require 'php_validation_function.php';
 ?>
@@ -58,6 +57,7 @@ require 'php_validation_function.php';
     <?php require_once 'ticketbooking.php' ?>
     <?php require_once 'notice1.php' ?>
     <?php require_once 'footer.php' ?>
+    
 </body>
 
 </html>

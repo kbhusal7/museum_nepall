@@ -97,6 +97,7 @@ require 'php_validation_function.php';
     <?php require_once "museum_info.php" ?>
     <!-- footer  -->
     <?php require_once 'footer.php' ?>
+    
 </body>
 
 </html>

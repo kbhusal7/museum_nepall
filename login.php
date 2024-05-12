@@ -121,7 +121,7 @@ if (isset($_POST['login'])) {
 
             <div class="btn">
                 <button type="submit" name="login">Login</button>
-                <div class="signup" name="signup" onclick="link()">Not a member?<a href="register.php"> Register now</a></div>
+                <div class="signup" name="signup" onclick="toggleR()">Not a member?<a href="#"> Register now</a></div>
                 <div class="space"> </div>
                 <div class="space"> </div>
             </div>

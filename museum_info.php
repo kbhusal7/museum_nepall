@@ -7,25 +7,34 @@ try {
     die('Database connection error' . '<br>' . $e->getMessage());
 }
 ?>
-     <div class="title"> 
-        <h1>Museum</h1>  </div> 
-        <div class="line"></div>  
-    </div>
-    <?php
+<div class="title" id="museum-info">
+  <h1>Museum</h1>
+</div>
+<div class="line"></div>
+</div>
+<?php
 
 
     if (mysqli_num_rows($museum_query) > 0) {
         $i = 0;
         while ($row = mysqli_fetch_array($museum_query)) {
     ?>
-            <!-- <p id="M_title"></p> -->
-                 <h2  id="M_title">   <?php echo   $i + 1 . ":  " . $row["m_name"]; ?>    </h2>
-            <div class="clearfix" id="museumBox">
-                <?php $load_img = trim($row['m_image']); ?>
-                <img class="img2" src='admin/muesumImages/<?php echo $load_img ?>' alt="Pineapple" width="400" height="280">
-                <?php echo $row["m_description"]; ?> 
-            </div>
-    <?php
+<!-- <p id="M_title"></p> -->
+<h2 id="M_title"> <?php echo   $i + 1 . ":  " . $row["m_name"]; ?> </h2>
+<div class="clearfix" id="museumBox">
+  <?php $load_img = trim($row['m_image']); ?>
+  <img class="img2" src='admin/muesumImages/<?php echo $load_img ?>' alt="img.png" width="400" height="280">
+  <?php echo $row["m_description"]; ?>
+</div>
+<script>
+function scrollToMuseum() {
+  const museumSection = document.getElementById('museum-info');
+  museumSection.scrollIntoView({
+    behavior: 'smooth'
+  });
+}
+</script>
+<?php
             $i++;
         }
     } else {
@@ -34,4 +43,11 @@ try {
     }
     ?>
 <!-- </section> -->
-    
+<script>
+function scrollToMuseum() {
+  const museumSection = document.getElementById('museum-info');
+  museumSection.scrollIntoView({
+    behavior: 'smooth'
+  });
+}
+</script>

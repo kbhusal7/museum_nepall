@@ -57,81 +57,81 @@ if (isset($_POST["confirm"])) {
 }
 ?>
 <div class="ticket-form">
-    <div class="ticket-container" id="ticket">
-        <label for="show" class="close-btn" onclick="toggleTB()"><i class="fa fa-times" aria-hidden="true">x</i></label>
-        <div class="text">Booking Details</div>
-        <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>"  name="TB" id="TB" method="post">
-            <div class="data2">
-                <label for="name">Museum Name</label>
-                <span id="err">
-                    <?php if (isset($err['MN'])) {
+  <div class="ticket-container" id="ticket">
+    <label for="show" class="close-btn" onclick="toggleTB()"><i class="fa fa-times" aria-hidden="true">x</i></label>
+    <div class="text">Booking Details</div>
+    <form action="<?php echo ($_SERVER["PHP_SELF"]); ?>" name="TB" id="TB" method="post">
+      <div class="data2">
+        <label for="name">Museum Name</label>
+        <span id="err">
+          <?php if (isset($err['MN'])) {
                         echo $err['MN'];
                     }  ?>
-                    <div class="space"> </div>
-                    <select name="MN" id="MN">
-                        <option value="">Select Name </option>
-                        <!--   fetch museum name -->
-                        <?php
+          <div class="space"> </div>
+          <select name="MN" id="MN">
+            <option value="">Select Name </option>
+            <!--   fetch museum name -->
+            <?php
                         $i = 0;
                         while ($row = mysqli_fetch_array($museum_query)) {
                         ?>
-                            <option value="<?php echo $row['m_name']; ?>"> <?php echo $row['m_name']; ?> </option>
-                        <?php
+            <option value="<?php echo $row['m_name']; ?>"> <?php echo $row['m_name']; ?> </option>
+            <?php
                             $i++;
                         }
                         ?>
-                    </select>
-            </div>
-            <div class="data2">
-                <label for="date">Date</label>
-                <span id="err">
-                    <?php if (isset($err['date'])) {
+          </select>
+      </div>
+      <div class="data2">
+        <label for="date">Date</label>
+        <span id="err">
+          <?php if (isset($err['date'])) {
                         echo $err['date'];
                     }  ?>
-                    <div class="space"> </div>
-                    <input type="date" id="date1" name="date">
-            </div>
-            <div class="data2">
+          <div class="space"> </div>
+          <input type="date" id="date1" name="date">
+      </div>
+      <div class="data2">
 
-                <label for="ticket-type">Nepali Citizen</label>
-                <span id="err">
-                    <?php if (isset($err['NV'])) {
+        <label for="ticket-type">Nepali Citizen</label>
+        <span id="err">
+          <?php if (isset($err['NV'])) {
                         echo $err['NV'];
                     }  ?>
-                    <div class="space"> </div>
-                    <span id="err_num"></span>
+          <div class="space"> </div>
+          <span id="err_num"></span>
 
-                    <input class="num_check"  name="NC" id="NC" type="text">
+          <input class="num_check" name="NC" id="NC" type="text">
 
-            </div>
-            <div class="data2">
-                <label for="ticket-type">Foreign Citizen</label>
-                 <span id="err_num"></span>
+      </div>
+      <div class="data2">
+        <label for="ticket-type">Foreign Citizen</label>
+        <span id="err_num"></span>
 
-                <input  class="num_check"   id="FC" name="FC" type="text">
-                
-            </div>
-            <div class="data2">
-                <label for="ticket-type">Nepali Student</label>
-                <span id="err_num"></span>
+        <input class="num_check" id="FC" name="FC" type="text">
 
-                <input class="num_check"    name="NS" id="NS" type="text">
+      </div>
+      <div class="data2">
+        <label for="ticket-type">Nepali Student</label>
+        <span id="err_num"></span>
 
-            </div>
+        <input class="num_check" name="NS" id="NS" type="text">
 
-            <div class="data2">
-                <label  for="ticket-type">Specially Abled</label> 
-                  <span id="err_num"></span>
+      </div>
 
-                <input  class="num_check" name="SA" id="SA" type="text">
-            </div>
-            <div class="btn2">
-                <!-- onclick="toggleT() -->
-                <button type="submit" name="confirm" id='TB_confirm' >Confirm</button>
-                <button type="reset">Reset</button>
-            </div>
-        </form>
-    </div>
+      <div class="data2">
+        <label for="ticket-type">Specially Abled</label>
+        <span id="err_num"></span>
+
+        <input class="num_check" name="SA" id="SA" type="text">
+      </div>
+      <div class="btn2">
+        <!-- onclick="toggleT() -->
+        <button type="submit" name="confirm" id='TB_confirm'>Confirm</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <!--  Payment Option Form -->
@@ -176,181 +176,191 @@ if (isset($_POST['details'])) {
 ?>
 <!-- ticket input data and payment -->
 <div class="center-2" id='tp'>
-    <div class="paymentmethod" id="details">
-        <!-- detailsclose() -->
+  <div class="paymentmethod" id="details">
+    <!-- detailsclose() -->
 
 
-        <label for="show" class="close-btn" onclick="toggleTD()"><i class="fa fa-times" aria-hidden="true">x</i></label>
-        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" >
-            <div class="text">Ticket Details</div>
-            <label for="museum">Museum Name:</label>
-            <span><?php print_r($_SESSION["MN"]); ?></span>
-            <br>
-            <label for="date">Date:</label>
-            <span> <?php print_r($_SESSION["date"]); ?></span>
-            <br>
-            <label for="person">No of Person:</label>
-            <div class="line1"></div>
-            <div class="list">
-                <label for="stu">Nepali Student:</label>
-                <span> <?php print_r($_SESSION["NS"]); ?></span><br>
-                <label for="ctz">Nepali Citizen:</label>
-                <span> <?php print_r($_SESSION["NC"]); ?></span><br>
-                <label for="ctz">Foreign Citizen:</label>
-                <span> <?php print_r($_SESSION["FC"]); ?></span><br>
+    <label for="show" class="close-btn" onclick="toggleTD()"><i class="fa fa-times" aria-hidden="true">x</i></label>
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+      <div class="text">Ticket Details</div>
+      <label for="museum">Museum Name:</label>
+      <span><?php print_r($_SESSION["MN"]); ?></span>
+      <br>
+      <label for="date">Date:</label>
+      <span> <?php print_r($_SESSION["date"]); ?></span>
+      <br>
+      <label for="person">No of Person:</label>
+      <div class="line1"></div>
+      <div class="list">
+        <label for="stu">Nepali Student:</label>
+        <span> <?php print_r($_SESSION["NS"]); ?></span><br>
+        <label for="ctz">Nepali Citizen:</label>
+        <span> <?php print_r($_SESSION["NC"]); ?></span><br>
+        <label for="ctz">Foreign Citizen:</label>
+        <span> <?php print_r($_SESSION["FC"]); ?></span><br>
 
-                <label for="ctz">Specially Abled:</label>
-                <span> <?php print_r($_SESSION["SA"]); ?></span><br>
-                <label for="ctz">Total Price:</label>
-                <span> <?php print_r($_SESSION["TP"]) ; ?></span><br>
-            </div>
-            <label for="payment">Payment:</label>
-            <div class="line2"></div>
-            <div class="list">
-                <input name="payment_type" value="E-sewa" type="radio">
-                <label for="esewa">Esewa</label><br>
-                <input name="payment_type" value="Khalti" type="radio">
-                <label for="khalti">Khalti</label><br>
-                <input name="payment_type" value="cash" type="radio">
-                <label for="cash">Cash</label> <br>
-                <label for=""> Payment ID: </label>
-                <input type="text" name="payment_id">
-            </div>
-            <div class="btn3">
-                <button type="submit" name="details" >Confirm</button>
-                <button type="button" onclick="cancel()">Cancel</button>
-            </div>
-        </form>
+        <label for="ctz">Specially Abled:</label>
+        <span> <?php print_r($_SESSION["SA"]); ?></span><br>
+        <label for="ctz">Total Price:</label>
+        <span> <?php print_r($_SESSION["TP"]) ; ?></span><br>
+      </div>
+      <label for="payment">Payment:</label>
+      <div class="line2"></div>
+      <div class="list">
+        <input name="payment_type" value="E-sewa" type="radio">
+        <label for="esewa">Esewa</label><br>
+        <input name="payment_type" value="Khalti" type="radio">
+        <label for="khalti">Khalti</label><br>
+        <input name="payment_type" value="cash" type="radio">
+        <label for="cash">Cash</label> <br>
+        <label for=""> Payment ID: </label>
+        <input type="text" name="payment_id">
+      </div>
+      <div class="btn3">
+        <button type="submit" name="details">Confirm</button>
+        <button type="button" onclick="cancel()">Cancel</button>
+      </div>
+    </form>
 
-    </div>
+  </div>
 </div>
 <!-- Audio element for alert sound -->
 <audio id="alertSound" src="alert.mp3"></audio>
 
 <!-- Modal dialog -->
 <div id="myModal" class="modal">
-    <div class="modal-content">
-        <p>Your ticket has been successfully booked!</p>
-    </div>
+  <div class="modal-content">
+    <p>Your ticket has been successfully booked!</p>
+  </div>
 </div>
 <!-- ticket booking -->
 <?php
 ?>
 <div class="center-3">
-    <div class="finalticket" id="tf">
-        <label for="show" class="close-btn" onclick="toggleTF()"><i class="fa fa-times" aria-hidden="true">x</i></label>
-        <form action=" <?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-            <div class="text">Ticket</div>
-            <label for="museum">Museum Name:</label>
-            <span><?php print_r($_SESSION["MN"]); ?></< /span>
-                <br>
-                <label for="date">Date:</label>
-                <span><?php print_r($_SESSION["date"]); ?></< /span>
-                    <br> <label for="ctz">booked by:</label>
-                    <?php print_r($_SESSION["name"]); ?><br>
-                    <label for="person">No of Person:</label>
-                    <div class="line1"></div>
-                    <div class="list">
-                        <label for="stu">Nepali Student:</label>
-                        <span><?php print_r($_SESSION["NS"]); ?></span><br>
-                        <label for="ctz">Nepali Citizen:</label>
-                        <span><?php print_r($_SESSION["NC"]); ?></span><br>
-                        <label for="ctz">Foreign Citizen:</label>
-                        <span><?php print_r($_SESSION["FC"]); ?></span><br>
+  <div class="finalticket" id="tf">
+    <label for="show" class="close-btn" onclick="toggleTF()"><i class="fa fa-times" aria-hidden="true"></i></label>
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" onsubmit="notificationPlay(event)">
+      <!-- Form fields -->
 
-                        <label for="ctz">Specially Abled:</label>
-                        <span><?php print_r($_SESSION["SA"]); ?></span><br>
 
-                        <label for="price">Payment by:</label>
-                        <span><?php print_r($_SESSION["payment_type"]); ?></span> <br>
+      <div class="text">Ticket</div>
+      <label for="museum">Museum Name:</label>
+      <span><?php print_r($_SESSION["MN"]); ?></< /span>
+        <br>
+        <label for="date">Date:</label>
+        <span><?php print_r($_SESSION["date"]); ?></< /span>
+          <br> <label for="ctz">booked by:</label>
+          <?php print_r($_SESSION["name"]); ?><br>
+          <label for="person">No of Person:</label>
+          <div class="line1"></div>
+          <div class="list">
+            <label for="stu">Nepali Student:</label>
+            <span><?php print_r($_SESSION["NS"]); ?></span><br>
+            <label for="ctz">Nepali Citizen:</label>
+            <span><?php print_r($_SESSION["NC"]); ?></span><br>
+            <label for="ctz">Foreign Citizen:</label>
+            <span><?php print_r($_SESSION["FC"]); ?></span><br>
 
-                        <label for="price">Total Price:</label>
-                        <span><?php print_r($_SESSION["TP"]); ?></span>
-                    </div>
-                    <div class="btn4">
-                        <button name="final" type="button" onclick="notificationPlay()">Confirm Ticket!</button>
-                        
-                    </div>
-                   
-        </form>
-    </div>
+            <label for="ctz">Specially Abled:</label>
+            <span><?php print_r($_SESSION["SA"]); ?></span><br>
+
+            <label for="price">Payment by:</label>
+            <span><?php print_r($_SESSION["payment_type"]); ?></span> <br>
+
+            <label for="price">Total Price:</label>
+            <span><?php print_r($_SESSION["TP"]); ?></span>
+          </div>
+          <div class="btn4">
+            <button name="final" type="submit">Confirm Ticket!</button>
+
+          </div>
+
+    </form>
+  </div>
 </div>
 
 <style>
-     /* Style for modal dialog */
-     .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-        }
+/* Style for modal dialog */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-        }
-    </style>
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+}
+</style>
 
 
 
- <script language="javascript">
-    
+<script language="javascript">
+function notificationPlay(event) {
+  // Prevent the default form submission behavior
+  event.preventDefault();
 
-function notificationPlay() {
-            // Play the alert sound
-            var audio = document.getElementById("alertSound");
-            audio.play();
+  // Play the alert sound
+  var audio = document.getElementById("alertSound");
+  audio.play();
 
-            // Display the modal dialog
-            var modal = document.getElementById('myModal');
-            modal.style.display = 'block';
-            
-            // // Hide the modal after 3 seconds
-            // setTimeout(function () {
-            //     modal.style.display = 'none';
-            // }, 3000);
-            alert('You have successfully booked a ticket!',2000);
-        }
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0');
-        var yyyy = today.getFullYear();
+  // Display the modal dialog
+  var modal = document.getElementById('myModal');
+  modal.style.display = 'block';
 
-        today = yyyy + '-' + mm + '-' + dd;
-        $('#date1').attr('min',today);
+  // Submit the form after 3 seconds
+  setTimeout(function() {
+    document.getElementById("TB").submit();
+  }, 3000);
+}
+
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0');
+var yyyy = today.getFullYear();
+
+today = yyyy + '-' + mm + '-' + dd;
+$('#date1').attr('min', today);
 $(document).ready(function() {
 
-//  ticket booking  validation
-$("#TB").vaildate({
+  //  ticket booking  validation
+  $("#TB").vaildate({
     rules: {
-        MN: "required",
-        date1: "required",
+      MN: "required",
+      date1: "required",
     },
     messages: {
-        MN: "Select Museum name hari ",
-        datetxt: "Select Date hari ",
+      MN: "Select Museum name hari ",
+      datetxt: "Select Date hari ",
     }
-});
-//  +ve number check jquer
-//called when key is pressed in textbox          
-$(".num_check").keypress(function(e) {
+  });
+  //  +ve number check jquer
+  //called when key is pressed in textbox          
+  $(".num_check").keypress(function(e) {
     //if the letter is not digit then display error and don't type anything
     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-        //display error message
-        $("#err_num").html(" Type Digits Only").show().fadeOut();
-        return false;
+      //display error message
+      $("#err_num").html(" Type Digits Only").show().fadeOut();
+      return false;
     }
+  });
 });
-});
-
-
-
-    </script>
+</script>

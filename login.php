@@ -83,55 +83,57 @@ if (isset($_POST['login'])) {
 
 ?>
 
-<div class="center">
-    <div class="container" id="container1">
-        <!-- <label for=""> <img src="img/closebtn.PNG" alt=""></label> -->
-        <label for="show" class="close-btn" onclick="toggleL()" id="cross"><i class="fa fa-times" aria-hidden="true">x </i></label>
-        <div class="text">Login Form</div>
-        <!--  $_SERVER['PHP_SELF']?> -->
-        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" id='loginform'>
-            <div class="data">
-                <label for="Email">Email</label>
-                <!-- <span id="erremail"></span>
+<div class="center" id="login">
+  <div class="container" id="container1">
+    <!-- <label for=""> <img src="img/closebtn.PNG" alt=""></label> -->
+    <label for="show" class="close-btn" onclick="toggleL()" id="cross"><i class="fa fa-times" aria-hidden="true">x
+      </i></label>
+    <div class="text">Login Form</div>
+    <!--  $_SERVER['PHP_SELF']?> -->
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" id='loginform'>
+      <div class="data">
+        <label for="Email">Email</label>
+        <!-- <span id="erremail"></span>
                 <span name="err_email"> 
                    
                     <?php if (isset($err['email'])) {
                         echo $err['email'];
                     }  ?> -->
 
-                <input type="email" name='email' id='email'>
-            </div>
+        <input type="email" name='email' id='email'>
+      </div>
 
-            <div class="space"> </div>
-            <div class="data">
-                <label for="Password">Password</label>
-                <span name="err_password" id='errpassword'>
-                    <?php if (isset($err['password'])) {
+      <div class="space"> </div>
+      <div class="data">
+        <label for="Password">Password</label>
+        <span name="err_password" id='errpassword'>
+          <?php if (isset($err['password'])) {
                         echo $err['password'];
                     }  ?>
 
-                </span>
+        </span>
 
-                <input type="password" name="password">
-                <div class="space"> </div>
-            </div>
-            <div class="forget"><a href="#">Forget password?</a></div>
-            <input type="checkbox" name='remember' id="remembertxt"> <span>Remember Me</span>
-
-
-            <div class="btn">
-                <button type="submit" name="login">Login</button>
-                <div class="signup" name="signup" onclick="toggleR()">Not a member?<a href="#"> Register now</a></div>
-                <div class="space"> </div>
-                <div class="space"> </div>
-            </div>
+        <input type="password" name="password">
+        <div class="space"> </div>
+      </div>
+      <div class="forget"><a href="#">Forget password?</a></div>
+      <input type="checkbox" name='remember' id="remembertxt"> <span>Remember Me</span>
 
 
-            <!-- php validation error  -->
-            <?php
+      <div class="btn">
+        <button type="submit" name="login">Login</button>
+        <div class="signup" name="signup">Not a member?<a href="#" onclick="toggleR()"> Register now</a>
+        </div>
+        <div class="space"> </div>
+        <div class="space"> </div>
+      </div>
+
+
+      <!-- php validation error  -->
+      <?php
             $err = [];
             echo checkError($err, 'login'); ?>
-            <?php
+      <?php
             if (isset($_GET['msg']) && $_GET['msg'] == 1) {
                 echo '<b><span class="error">Please login to continue.</span></b>';
             } else if (isset($_GET['msg']) && $_GET['msg'] == 2) {
@@ -141,80 +143,80 @@ if (isset($_POST['login'])) {
             }
             ?>
 
-        </form>
-    </div>
+    </form>
+  </div>
 </div>
 
 <!--  err message red css -->
 <style type="text/css">
-    .red-border {
-        border: 1px solid red;
-    }
+.red-border {
+  border: 1px solid red;
+}
 
-    label.error {
-        color: red;
-    }
+label.error {
+  color: red;
+}
 </style>
 
 <!-- ajax vlidation in login form -->
 <script>
-    // starting of jquery
-    $(document).ready(function() {
+// starting of jquery
+$(document).ready(function() {
 
-        // jquery     validation
-        $('#loginform').validate({
+  // jquery     validation
+  $('#loginform').validate({
 
-            rules: {
-                email: {
-                    required: true,
-                    minlength: 6
+    rules: {
+      email: {
+        required: true,
+        minlength: 6
 
-                },
-                password: {
-                    required: true,
-                    minlength: 6
-                }
+      },
+      password: {
+        required: true,
+        minlength: 6
+      }
 
-            },
-            messages: {
-                email: {
-                    required: " email must required",
-                    minlength: " email show  be valid"
-
-
-                },
-                password: {
-                    required: " Enter password",
-                    minlength: "password should be at least 8 character"
-
-                }
-
-            }
-        });
-
-        //ajax user email password check  from database
-        $('#email').keyup(function() {
-            var uname = $(this).val();
-            $.ajax({
-                url: 'check_email.php',
-                data: {
-                    'email': email
-                },
-                method: 'post',
-                dataType: 'email',
-                success: function(response) {
-                    if (response !== $email) {
-                        $('#erruname').text(" email doesn't match");
-                    }
-
-                    //  else {
-                    // 	$('#erruname').text('Username available');
-                    // }
-                }
-            });
+    },
+    messages: {
+      email: {
+        required: " email must required",
+        minlength: " email show  be valid"
 
 
-        });
+      },
+      password: {
+        required: " Enter password",
+        minlength: "password should be at least 8 character"
 
+      }
+
+    }
+  });
+
+  //ajax user email password check  from database
+  $('#email').keyup(function() {
+    var uname = $(this).val();
+    $.ajax({
+      url: 'check_email.php',
+      data: {
+        'email': email
+      },
+      method: 'post',
+      dataType: 'email',
+      success: function(response) {
+        if (response !== $email) {
+          $('#erruname').text(" email doesn't match");
+        }
+
+        //  else {
+        // 	$('#erruname').text('Username available');
+        // }
+      }
     });
+
+
+  });
+
+});
 </script>
